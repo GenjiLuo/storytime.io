@@ -1,7 +1,7 @@
 import React from 'react';
 
 class CardTypeList extends React.Component{
-    render(){
+    render () {
         return (<div>test</div>);
     }
 }

@@ -9,7 +9,14 @@
 const path = require('path');
 const srcPath = path.join(__dirname, '/../src');
 const toolboxPath = path.join(__dirname, '/../node_modules/react-toolbox');
-const dfltPort = 8000;
+const dfltPort = 15467;
+
+// Additional npm or bower modules to include in builds
+// Add all foreign plugins you may need into this array
+// @example:
+// let npmBase = path.join(__dirname, '../node_modules');
+// let additionalPaths = [ path.join(npmBase, 'react-bootstrap') ];
+let additionalPaths = [];
 
 /**
  * Get the default modules object for webpack
@@ -17,32 +24,52 @@ const dfltPort = 8000;
  */
 function getDefaultModules() {
   return {
-    preLoaders: [
+    rules: [
       {
+        enforce: 'pre',
         test: /\.(js|jsx)$/,
         include: srcPath,
         loader: 'eslint-loader'
-      }
-    ],
-    loaders: [
-      {
-            test: /.scss$/,
-            loader: 'style!css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass-loader',
-            exclude: srcPath
       },
       {
-            test: /.scss$/,
-            loader: 'style!css!sass?outputStyle=expanded',
-            exclude: toolboxPath
+        test: /.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: true,
+              importLoaders: 1,
+              localIdentName: '[name]__[local]___[hash:base64:8]',
+            }
+          },
+          'postcss-loader'
+        ],
+        exclude: srcPath
       },
       {
-        test: /\.(png|jpg|gif|woff|woff2)$/,
-        loader: 'url-loader?limit=8192'
+        test: /.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              outputStyle: 'expanded-loader'
+            },
+          }
+        ],
+        exclude: toolboxPath
       },
-      {
-        test: /\.(mp4|ogg|svg)$/,
-        loader: 'file-loader'
-      }
+      // {
+      //   test: /\.(png|jpg|gif|woff|woff2)$/,
+      //   loader: 'url-loader?limit=8192'
+      // },
+      // {
+      //   test: /\.(mp4|ogg|svg)$/,
+      //   loader: 'file-loader'
+      // }
     ]
   };
 }
@@ -51,5 +78,6 @@ module.exports = {
   srcPath: srcPath,
   publicPath: '/assets/',
   port: dfltPort,
-  getDefaultModules: getDefaultModules
+  getDefaultModules: getDefaultModules,
+  additionalPaths: additionalPaths
 };

@@ -10,30 +10,30 @@ class App extends React.Component {
     dialogActive: false
   }
   actions = [
-    { label: "Close", onClick: this.closeDialog },
+    { label: 'Close', onClick: this.closeDialog }
     // { label: "Add", onClick: this.handleAddCard }
   ];
-  render() {
+  render () {
     return (
       <div>
         <Button id="addCardBtn" onClick={this.handleAddCardBtnClick.bind(this)}>+</Button>
         <CardList ref={'cardList'} />
-        <Dialog 
+        <Dialog
           active={this.state.dialogActive}
-          actions={this.actions}          
+          actions={this.actions}
           title='My awesome dialog'>
           <CardTypeList/>
         </Dialog>
       </div>
     );
   }
-  handleAddCardBtnClick() {
+  handleAddCardBtnClick () {
     this.openDialog.call(this);
   }
-  openDialog() {
+  openDialog () {
       this.setState({ dialogActive: !this.state.dialogActive });
   }
-  closeDialog() {
+  closeDialog () {
       this.refs.cardList.addCard.call(this.refs.cardList);
   }
 }
