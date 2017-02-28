@@ -16,20 +16,20 @@ const dfltPort = 15467;
 // @example:
 // let npmBase = path.join(__dirname, '../node_modules');
 // let additionalPaths = [ path.join(npmBase, 'react-bootstrap') ];
-let additionalPaths = [];
+const additionalPaths = [];
 
 /**
  * Get the default modules object for webpack
  * @return {Object}
  */
-function getDefaultModules() {
+function getDefaultModules () {
   return {
     rules: [
       {
         enforce: 'pre',
         test: /\.(js|jsx)$/,
         include: srcPath,
-        loader: 'eslint-loader'
+        use: ['eslint-loader']
       },
       {
         test: /.css$/,
@@ -41,7 +41,7 @@ function getDefaultModules() {
               modules: true,
               sourceMap: true,
               importLoaders: 1,
-              localIdentName: '[name]__[local]___[hash:base64:8]',
+              localIdentName: '[name]__[local]___[hash:base64:8]'
             }
           },
           'postcss-loader'
@@ -57,11 +57,11 @@ function getDefaultModules() {
             loader: 'sass-loader',
             options: {
               outputStyle: 'expanded-loader'
-            },
+            }
           }
         ],
         exclude: toolboxPath
-      },
+      }
       // {
       //   test: /\.(png|jpg|gif|woff|woff2)$/,
       //   loader: 'url-loader?limit=8192'
@@ -75,9 +75,9 @@ function getDefaultModules() {
 }
 
 module.exports = {
-  srcPath: srcPath,
+  srcPath,
   publicPath: '/assets/',
   port: dfltPort,
-  getDefaultModules: getDefaultModules,
-  additionalPaths: additionalPaths
+  getDefaultModules,
+  additionalPaths
 };

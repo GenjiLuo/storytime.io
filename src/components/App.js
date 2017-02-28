@@ -1,41 +1,44 @@
 import React from 'react';
-import CardList from './CardList';
-import CardTypeList from './CardTypeList';
-import {Dialog} from 'react-toolbox/lib/dialog';
-import {Button} from 'react-toolbox/lib/button';
+import CardList from 'components/CardList';
+import CardTypeList from 'components/CardTypeList';
+import { Dialog } from 'react-toolbox/lib/dialog';
+import { Button } from 'react-toolbox/lib/button';
 import 'styles/App.scss';
 
 class App extends React.Component {
-  state = {
-    dialogActive: false
+  constructor() {
+    super();
+    this.state = {
+      dialogActive: false
+    };
   }
-  actions = [
-    { label: 'Close', onClick: this.closeDialog }
-    // { label: "Add", onClick: this.handleAddCard }
-  ];
-  render () {
+  handleAddCardBtnClick() {
+    this.openDialog();
+  }
+  openDialog() {
+    this.setState({ dialogActive: !this.state.dialogActive });
+  }
+  closeDialog() {
+    this.refs.cardList.addCard.call(this.refs.cardList);
+  }
+  render() {
     return (
       <div>
-        <Button id="addCardBtn" onClick={this.handleAddCardBtnClick.bind(this)}>+</Button>
+        <Button id="addCardBtn" onClick={this.handleAddCardBtnClick}>+</Button>
         <CardList ref={'cardList'} />
-        <Dialog
-          active={this.state.dialogActive}
-          actions={this.actions}
-          title='My awesome dialog'>
-          <CardTypeList/>
+        <Dialog active={this.state.dialogActive} actions={this.actions}>
+          <CardTypeList />
         </Dialog>
       </div>
     );
   }
-  handleAddCardBtnClick () {
-    this.openDialog.call(this);
-  }
-  openDialog () {
-      this.setState({ dialogActive: !this.state.dialogActive });
-  }
-  closeDialog () {
-      this.refs.cardList.addCard.call(this.refs.cardList);
-  }
 }
+
+App.defaultProps = {
+  actions: [{
+    label: 'Close',
+    onClick: this.closeDialog
+  }]
+};
 
 export default App;

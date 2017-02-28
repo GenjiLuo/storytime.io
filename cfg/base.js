@@ -1,8 +1,6 @@
-'use strict';
-let path = require('path');
-let defaultSettings = require('./defaults');
 
-
+const path = require('path');
+const defaultSettings = require('./defaults');
 
 module.exports = {
     // additionalPaths: additionalPaths,
@@ -23,15 +21,15 @@ module.exports = {
         noInfo: false
     },
     resolve: {
-        extensions: ['.json', '.css','.js', '.jsx'],
+        extensions: ['.json', '.css', '.js', '.jsx'],
         alias: {
             actions: `${defaultSettings.srcPath}/actions/`,
             components: `${defaultSettings.srcPath}/components/`,
             sources: `${defaultSettings.srcPath}/sources/`,
             stores: `${defaultSettings.srcPath}/stores/`,
             styles: `${defaultSettings.srcPath}/styles/`,
-            config: `${defaultSettings.srcPath}/config/` + process.env.REACT_WEBPACK_ENV,
+            config: `${defaultSettings.srcPath}/config/` + process.env.REACT_WEBPACK_ENV
         }
     },
-    module: {},
+    module: {}
 };

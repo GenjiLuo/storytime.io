@@ -1,11 +1,11 @@
 'use strict';
 
-let path = require('path');
-let webpack = require('webpack');
-let baseConfig = require('./base');
-let defaultSettings = require('./defaults');
+const path = require('path');
+const webpack = require('webpack');
+const baseConfig = require('./base');
+const defaultSettings = require('./defaults');
 
-let config = Object.assign({}, baseConfig, {
+const config = Object.assign({}, baseConfig, {
   entry: [
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://127.0.0.1:' + defaultSettings.port,
@@ -18,9 +18,9 @@ let config = Object.assign({}, baseConfig, {
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('development'),
-      },
-    }),
+        NODE_ENV: JSON.stringify('development')
+      }
+    })
   ],
   module: defaultSettings.getDefaultModules()
 });
@@ -31,15 +31,15 @@ config.module.rules.push({
   use: [{
       loader: 'babel-loader',
       options: {
-        presets: [
-          "es2015",
-          "stage-2",
-          "react"
+        'presets': [
+          'es2016',
+          'stage-3',
+          'react'
         ],
-        "plugins": [
-          "react-hot-loader/babel"
+        'plugins': [
+          'react-hot-loader/babel'
         ]
-      },
+      }
     }],
   include: [].concat(
     defaultSettings.additionalPaths,
