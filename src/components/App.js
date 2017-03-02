@@ -15,12 +15,12 @@ class App extends React.Component {
   }
   openDialog() {
     this.setState({ dialogActive: true });
-  }  
-  closeDialog() {
-    this.setState({ dialogActive: false });    
   }
-  addCard(){
-    this.refs.cardList.addCard.call(this.refs.cardList);
+  closeDialog() {
+    this.setState({ dialogActive: false });
+  }
+  addCard(cardTypeName) {
+    this.refs.cardList.addCard.call(this.refs.cardList, cardTypeName);
   }
   render() {
     return (
@@ -31,8 +31,8 @@ class App extends React.Component {
           onEscKeyDown={this.closeDialog.bind(this)}
           onOverlayClick={this.closeDialog.bind(this)}
           theme={CustomDialog}>
-            <CardTypeList/>
-          </Dialog>
+          <CardTypeList callback={this.addCard.bind(this)} />
+        </Dialog>
       </div>
     );
   }
