@@ -4,11 +4,11 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings"
+    "plugin:css-modules/recommended"
   ],
   "plugins": [
-    "react"
+    "react",
+    "css-modules"
   ],
   "parserOptions": {
     "ecmaVersion": 6,

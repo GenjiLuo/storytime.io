@@ -2,8 +2,8 @@
 html, body {
   color: #ffffff;
   height: 100%;
-   background: #ED4264; /* fallback for old browsers */
- background: linear-gradient(to left, #ED4264, #FFEDBC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+   //background: #ED4264; /* fallback for old browsers */
+ //background: linear-gradient(to left, #ED4264, #FFEDBC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 #app{
@@ -16,7 +16,6 @@ html, body {
     left: 0;
     margin:20px;
 }
-
 // #addCardBtn {
 //     display:block;
 //     width:50px;

@@ -1,8 +1,9 @@
 import React from 'react';
 import CardList from 'components/CardList';
 import CardTypeList from 'components/CardTypeList';
-import { Dialog } from 'react-toolbox/lib/dialog';
-import { Button } from 'react-toolbox/lib/button';
+import Dialog from 'react-toolbox/lib/dialog';
+import Button from 'react-toolbox/lib/button';
+import CustomDialog from 'styles/customToolbox/CustomDialog.css';
 import 'styles/App.scss';
 
 class App extends React.Component {
@@ -12,33 +13,29 @@ class App extends React.Component {
       dialogActive: false
     };
   }
-  handleAddCardBtnClick() {
-    this.openDialog();
-  }
   openDialog() {
-    this.setState({ dialogActive: !this.state.dialogActive });
-  }
+    this.setState({ dialogActive: true });
+  }  
   closeDialog() {
+    this.setState({ dialogActive: false });    
+  }
+  addCard(){
     this.refs.cardList.addCard.call(this.refs.cardList);
   }
   render() {
     return (
       <div>
-        <Button id="addCardBtn" onClick={this.handleAddCardBtnClick}>+</Button>
+        <Button id="addCardBtn" onClick={this.openDialog.bind(this)}>+</Button>
         <CardList ref={'cardList'} />
-        <Dialog active={this.state.dialogActive} actions={this.actions}>
-          <CardTypeList />
-        </Dialog>
+        <Dialog active={this.state.dialogActive}
+          onEscKeyDown={this.closeDialog.bind(this)}
+          onOverlayClick={this.closeDialog.bind(this)}
+          theme={CustomDialog}>
+            <CardTypeList/>
+          </Dialog>
       </div>
     );
   }
 }
-
-App.defaultProps = {
-  actions: [{
-    label: 'Close',
-    onClick: this.closeDialog
-  }]
-};
 
 export default App;

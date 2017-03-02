@@ -8,6 +8,7 @@
 
 const path = require('path');
 const srcPath = path.join(__dirname, '/../src');
+const customToolboxPath = path.join(__dirname, '/../src/styles/customToolbox');
 const toolboxPath = path.join(__dirname, '/../node_modules/react-toolbox');
 const dfltPort = 15467;
 
@@ -46,7 +47,7 @@ function getDefaultModules () {
           },
           'postcss-loader'
         ],
-        exclude: srcPath
+        include: [toolboxPath, customToolboxPath]
       },
       {
         test: /.scss$/,
