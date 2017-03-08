@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from 'components/Card';
-
+import Images from 'stores/images.json'
 /** Displays Card components **/
 class CardList extends React.Component {
   constructor() {
@@ -22,8 +22,12 @@ class CardList extends React.Component {
     this.setState({ cards: filtered });
   }
   getRandomCardByType(cardTypeName){
+    var cardTypeObject = Images[cardTypeName];
+    var keys = Object.keys(cardTypeObject);
+    var randomIndex = Math.floor(Math.random(keys.length - 1));
+    var cardTypeResult = keys[randomIndex];
     //todo: implement random card image by card type
-    return { img: cardTypeName, imgDescription: cardTypeName }
+    return { img: cardTypeResult, imgDescription: cardTypeObject[cardTypeResult] }
   }
   /** render
    * @return {JSX} List of Cards
