@@ -1,45 +1,52 @@
 import React from 'react';
 import Card from 'components/Card';
-import Images from 'stores/images.json'
+import Images from 'stores/images.json';
+
+const getRandomCardByType = (cardTypeName) => {
+  const cardTypeObject = Images[cardTypeName];
+  const keys = Object.keys(cardTypeObject);
+  const randomIndex = Math.floor(Math.random(keys.length - 1));
+  const cardTypeResult = keys[randomIndex];
+  // todo: implement random card image by card type
+  return { img: cardTypeResult, imgDescription: cardTypeObject[cardTypeResult] };
+};
+
 /** Displays Card components **/
 class CardList extends React.Component {
   constructor() {
     super();
     this.state = {
-      cards: []
+      cards: [],
     };
   }
   /** Adds a new card to cards array
    * @param {object} card - image url and description.
    * **/
-  addCard(cardTypeName) {
-    let card = this.getRandomCardByType(cardTypeName);
+  addCard = (cardTypeName) => {
+    const card = getRandomCardByType(cardTypeName);
     this.setState({ cards: this.state.cards.concat([card]) });
   }
-  removeCard(index) {
-    var filtered = this.state.cards;
+  removeCard = (index) => {
+    const filtered = this.state.cards;
     filtered.splice(index, 1);
     this.setState({ cards: filtered });
-  }
-  getRandomCardByType(cardTypeName){
-    var cardTypeObject = Images[cardTypeName];
-    var keys = Object.keys(cardTypeObject);
-    var randomIndex = Math.floor(Math.random(keys.length - 1));
-    var cardTypeResult = keys[randomIndex];
-    //todo: implement random card image by card type
-    return { img: cardTypeResult, imgDescription: cardTypeObject[cardTypeResult] }
   }
   /** render
    * @return {JSX} List of Cards
    * **/
   render() {
     const data = [];
-    const changeCallback = this.removeCard.bind(this);
-    this.state.cards.forEach(function (card, i) {
+    const changeCallback = this.removeCard;
+    this.state.cards.forEach((card, i) => {
+      const key = i;
       data.push(
-        <Card key={i} index={i} img={card.img} imgDescription={card.imgDescription} callback={changeCallback} />);
+        <Card
+          key={key} index={i}
+          img={card.img} imgDescription={card.imgDescription}
+          callback={changeCallback}
+        />);
     });
-    return <div className='card-list'>{data}</div>;
+    return <div className="card-list">{data}</div>;
   }
 }
 

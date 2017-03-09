@@ -10,28 +10,30 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      dialogActive: false
+      dialogActive: false,
     };
   }
-  openDialog() {
+  openDialog = () => {
     this.setState({ dialogActive: true });
   }
-  closeDialog() {
+  closeDialog = () => {
     this.setState({ dialogActive: false });
   }
-  addCard(cardTypeName) {
-    this.refs.cardList.addCard.call(this.refs.cardList, cardTypeName);
+  addCard = (cardTypeName) => {
+    this.cardList.addCard.call(this.cardList, cardTypeName);
   }
   render() {
     return (
       <div>
-        <Button id="addCardBtn" onClick={this.openDialog.bind(this)}>+</Button>
-        <CardList ref={'cardList'} />
-        <Dialog active={this.state.dialogActive}
-          onEscKeyDown={this.closeDialog.bind(this)}
-          onOverlayClick={this.closeDialog.bind(this)}
-          theme={CustomDialog}>
-          <CardTypeList callback={this.addCard.bind(this)} />
+        <Button id="addCardBtn" onClick={this.openDialog}>+</Button>
+        <CardList ref={(cardList) => { this.cardList = cardList; }} />
+        <Dialog
+          active={this.state.dialogActive}
+          onEscKeyDown={this.closeDialog}
+          onOverlayClick={this.closeDialog}
+          theme={CustomDialog}
+        >
+          <CardTypeList callback={this.addCard} />
         </Dialog>
       </div>
     );

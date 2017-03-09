@@ -1,11 +1,11 @@
 {
     "presets": [
-        "es2016",
-        "stage-3",
-        "react"
+        "latest",
+        "stage-0",
+        "react"        
     ],
     "plugins": [
-        "react-hot-loader/babel"
+        "react-hot-loader/babel"    
     ]
 }
     
