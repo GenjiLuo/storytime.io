@@ -6,4 +6,15 @@ import App from './components/App';
 // require('normalize.css/normalize.css');
 
 // Render the main component into the dom
-ReactDOM.render(<App />, document.getElementById('app'));
+const render = (Component) => {
+ReactDOM.render(<Component />, document.getElementById('app'));
+}
+
+render(App);
+
+// Hot Module Replacement API
+if (module.hot) {
+  module.hot.accept('./components/App', () => {
+    render(App)
+  });
+}

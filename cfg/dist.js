@@ -24,19 +24,7 @@ const config = Object.assign({}, baseConfig, {
 // Add needed loaders to the defaults here
 config.module.rules.push({
   test: /\.(js|jsx)$/,
-  use: [{
-      loader: 'babel-loader',
-      options: {
-        'presets': [
-          'es2016',
-          'stage-3',
-          'react'
-        ],
-        'plugins': [
-          'react-hot-loader/babel'
-        ]
-      }
-    }],
+  use: ['babel-loader'],
   include: [].concat(
     defaultSettings.additionalPaths,
     [ path.join(__dirname, '/../src') ]
