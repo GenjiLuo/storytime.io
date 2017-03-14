@@ -1,0 +1,48 @@
+.wrapper {
+    color: black;
+    
+    
+    box-shadow: 0px 4px 5px 1px rgba(0,0,0,0.4);
+    font-family: 'Itim', cursive;
+
+  max-width: 500px;
+  /*min-height: 304px;*/
+  min-width:300px;
+  margin-bottom: 10px;
+  /* whatever width you want */
+  display: block;
+  position: relative;
+}
+.wrapper:after {
+  padding-top: 56.25%;
+  
+  /* 16:9 ratio */
+  display: block;
+  content: '';
+}
+.main {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  /* fill parent */
+  background: rgba(237,237,237,1);
+background: -webkit-linear-gradient(right, rgba(237,237,237,1) 0%, rgba(254,254,254,1) 100%);
+    background: -moz-linear-gradient(right, rgba(237,237,237,1) 0%, rgba(254,254,254,1) 100%);
+    background: -o-linear-gradient(right, rgba(237,237,237,1) 0%, rgba(254,254,254,1) 100%);
+    background: linear-gradient(to left, rgba(237,237,237,1) 0%, rgba(254,254,254,1) 100%);
+  /* let's see it! */
+  color: white;
+}
+
+.button{
+    position: absolute !important;
+    right: 0;
+    top: 0;
+}
+
+.image {
+  height: 100%;
+  width:auto;
+}

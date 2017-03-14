@@ -1,0 +1,11 @@
+.button {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin:20px;
+    background-color: #EC407A;
+    color:white !important;
+    &.neutral:not(disabled).flat:hover {
+     background-color: #F8BBD0; 
+    }
+}

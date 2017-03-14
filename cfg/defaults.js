@@ -46,22 +46,18 @@ function getDefaultModules () {
             }
           },
           'postcss-loader'
-        ],
-        include: [toolboxPath, customToolboxPath]
+        ]
       },
       {
         test: /.scss$/,
         use: [
-          'style-loader',
-          'css-loader',
           {
             loader: 'sass-loader',
             options: {
               outputStyle: 'expanded-loader'
             }
           }
-        ],
-        exclude: toolboxPath
+        ]
       }
       // {
       //   test: /\.(png|jpg|gif|woff|woff2)$/,

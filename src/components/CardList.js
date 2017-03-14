@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from 'components/Card';
 import Images from 'stores/images.json';
+import CardListTheme from 'styles/CardList.css';
 
 const getRandomCardByType = (cardTypeName) => {
   const cardTypeObject = Images[cardTypeName];
@@ -16,7 +17,10 @@ class CardList extends React.Component {
   constructor() {
     super();
     this.state = {
-      cards: [],
+      cards: [{
+        img: 'test',
+        description: 'test',
+      }],
     };
   }
   /** Adds a new card to cards array
@@ -42,11 +46,11 @@ class CardList extends React.Component {
       data.push(
         <Card
           key={key} index={i}
-          img={card.img} imgDescription={card.imgDescription}
+          img={card.img} description={card.description}
           callback={changeCallback}
         />);
     });
-    return <div className="card-list">{data}</div>;
+    return <div theme={CardListTheme}>{data}</div>;
   }
 }
 

@@ -1,7 +1,5 @@
 import React from 'react';
 import CardTypeButton from 'components/CardTypeButton';
-import 'styles/CardTypes.scss';
-
 
 class CardTypeList extends React.Component {
   constructor() {
@@ -17,7 +15,7 @@ class CardTypeList extends React.Component {
       const key = i;
       cardTypeButtons.push(<CardTypeButton key={key} typeName={name} callback={callback} />);
     });
-    return (<div id="cardTypesContainer"><ul>{cardTypeButtons}</ul></div>);
+    return (<div>{cardTypeButtons}</div>);
   }
 }
 

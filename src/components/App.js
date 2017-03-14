@@ -2,9 +2,10 @@ import React from 'react';
 import CardList from 'components/CardList';
 import CardTypeList from 'components/CardTypeList';
 import Dialog from 'react-toolbox/lib/dialog';
+import CustomDialog from 'styles/CustomDialog.css';
+import AddCardTheme from 'styles/AddCardButton.css';
 import Button from 'react-toolbox/lib/button';
-import CustomDialog from 'styles/customToolbox/CustomDialog.css';
-import 'styles/App.scss';
+import AppTheme from 'styles/App.css';
 
 class App extends React.Component {
   constructor() {
@@ -24,8 +25,8 @@ class App extends React.Component {
   }
   render() {
     return (
-      <div>
-        <Button id="addCardBtn" onClick={this.openDialog}>+</Button>
+      <div className={AppTheme.app}>
+        <Button theme={AddCardTheme} onClick={this.openDialog}>+</Button>
         <CardList ref={(cardList) => { this.cardList = cardList; }} />
         <Dialog
           active={this.state.dialogActive}
@@ -34,6 +35,7 @@ class App extends React.Component {
           theme={CustomDialog}
         >
           <CardTypeList callback={this.addCard} />
+          <Button className={AppTheme.closeDialogButton} onClick={this.closeDialog}>Close</Button>
         </Dialog>
       </div>
     );

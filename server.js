@@ -1,5 +1,4 @@
-/*eslint no-console:0 */
-'use strict';
+/* eslint no-console:0 */
 require('core-js/fn/object/assign');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
@@ -11,7 +10,7 @@ new WebpackDevServer(webpack(config), config.devServer)
   if (err) {
     console.log(err);
   }
-  console.log('Listening at localhost:' + config.devServer.port);
+  console.log(`Listening at localhost:${config.devServer.port}`);
   console.log('Opening your system browser...');
-  open('http://localhost:' + config.devServer.port + '/webpack-dev-server/');
+  open(`http://localhost:${config.devServer.port}/webpack-dev-server/`);
 });

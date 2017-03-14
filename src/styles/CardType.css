@@ -1,0 +1,44 @@
+:root{
+    --block:{
+        display: block;
+    }
+    --smallspace:{
+    margin-bottom: 20px;
+    }    
+    --button:{
+width:100%;
+font-weight: 600;
+    color:white !important;
+    }
+}
+
+.type-Location{
+    @apply --block;
+    @apply --smallspace;
+    @apply --button;
+        color: #FFCDD2;
+        background-color: #E53935;        
+        &:hover{
+            background-color: #F44336 !important;
+        }
+    }
+    .type-Item{
+        @apply --block;
+        @apply --smallspace;
+        @apply --button;
+        color: #BBDEFB;
+        background-color: #1E88E5;        
+        &:hover{
+            background-color: #2196F3 !important;
+        }
+    }
+    .type-Feeling{
+        @apply --block;
+        @apply --smallspace;
+        @apply --button;
+        color: #C8E6C9;
+        background-color: #388E3C;        
+        &:hover{
+            background-color: #4CAF50 !important;
+        }
+    }  
